@@ -23,6 +23,27 @@ public class Schedule {
         }
     }
 
+    private boolean isMeetingValid(Meeting meeting){
+        LocalTime startTimeNew = meeting.getStartTime();
+        LocalTime endTimeNew = meeting.getEndTime();
+        if(startTimeNew.isBefore(startTime) || endTimeNew.isAfter(endTime)){
+            return false;
+        }
+        if (numberOfMeetings > 0){
+            for (Meeting meet : meetings) {
+                LocalTime startTimeTested = meet.getStartTime();
+                LocalTime endTimeTested = meet.getEndTime();
+                if (!(startTimeNew.isBefore(startTimeTested)
+                        && endTimeNew.isBefore(startTimeTested))
+                        && !(startTimeNew.isAfter(endTimeTested)
+                        && endTimeNew.isAfter(endTimeTested))){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     private int indexOfMeeting(Meeting meeting){
         for (int i = 0; i < numberOfMeetings; i++) {
             Meeting meet = meetings[i];
@@ -70,23 +91,5 @@ public class Schedule {
             output.append("Clean Schedule");
         }
         return output.toString();
-    }
-
-    private boolean isMeetingValid(Meeting meeting){
-        LocalTime startTimeNew = meeting.getStartTime();
-        LocalTime endTimeNew = meeting.getEndTime();
-        if(startTimeNew.isBefore(startTime) || endTimeNew.isAfter(endTime)){
-            return false;
-        }
-        if (numberOfMeetings > 0){
-            for (Meeting meet : meetings) {
-                LocalTime startTimeTested = meet.getStartTime();
-                LocalTime endTimeTested = meet.getEndTime();
-                if (!(startTimeNew.isBefore(startTimeTested) && endTimeNew.isBefore(startTimeTested)) && !(startTimeNew.isAfter(endTimeTested) && endTimeNew.isAfter(endTimeTested))){
-                    return false;
-                }
-            }
-        }
-        return true;
     }
 }

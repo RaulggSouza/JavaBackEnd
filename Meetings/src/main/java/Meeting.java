@@ -18,7 +18,7 @@ public class Meeting {
             if (minutes < 0) minutes += Duration.ofHours(24).toMinutes();
             return minutes;
         }
-        return -1;
+        return 0;
     }
 
     public String getDescription() {

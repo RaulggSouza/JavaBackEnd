@@ -16,14 +16,32 @@ public class Player {
     public String getStateAsString(){
         return "Name: " + name + " Number: " + number + " Position: " + position + "is fielded: " + ((isFielded) ? "Yes" : "No") + " Team: " + team;
     }
+
     public boolean isFielded() {
         return isFielded;
     }
+
     public void removeFromField(){
         isFielded = false;
     }
 
-    public void addToField(){
+    public void field(){
         isFielded = true;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public Team getTeam() {
+        return team;
     }
 }

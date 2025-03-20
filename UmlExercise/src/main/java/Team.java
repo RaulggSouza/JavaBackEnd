@@ -5,6 +5,7 @@ public class Team {
     private final Player[] players = new Player[18];
     private Player captain;
     private int numberOfPlayers;
+
     public Team(String name, String baseLocation, String coachName){
         this.name = name;
         this.baseLocation = baseLocation;
@@ -13,12 +14,9 @@ public class Team {
     }
 
     public void addPlayer(Player player){
-        if (numberOfPlayers < 18){
-            players[numberOfPlayers] = player;
-            numberOfPlayers++;
-        } else {
-            System.out.println("Team is already full");
-        }
+        if (numberOfPlayers >= 18) return;
+        players[numberOfPlayers] = player;
+        numberOfPlayers++;
     }
 
     public void removePlayer(Player player){
@@ -34,7 +32,7 @@ public class Team {
         for (int i = 0; i < numberOfPlayers; i++){
             if (players[i] == starter){
                 starter.removeFromField();
-                substitute.addToField();
+                substitute.field();
                 players[i] = substitute;
             }
         }
@@ -52,9 +50,6 @@ public class Team {
             if (players[i].isFielded()){
                 fieldedPlayers[i] = players[i];
             }
-        }
-        for (int i = 0; i < fieldedPlayers.length; i++) {
-            fieldedPlayers[i].getStateAsString();
         }
         return fieldedPlayers;
     }

@@ -18,7 +18,7 @@ public class Post {
     public String show(){
         StringBuilder output = new StringBuilder();
         output.append(date).append(" ");
-        String quoteText = user+" says \""+quote+"\"";
+        String quoteText = user.getUserName()+" says \""+quote+"\"";
         output.append(quoteText);
         String clapsAndBoos = " | Claps: "+claps+" | Boos: "+boos;
         output.append(clapsAndBoos);

@@ -65,21 +65,22 @@ public class UserAccount {
     }
 
     private String showList(StringJoiner joiner, Post[] posts, int size, String falseOutput){
-        if (size < 0){
+        if (size < 1){
             return falseOutput;
         }
         for (int i = 0; i < size; i++) {
             Post post = posts[i];
+//            System.out.println(post);
             joiner.add(post.show());
         }
         return joiner.toString();
     }
 
     public String showMyFriends(){
-        if (sizeFollowers < 0){
+        if (sizeFollowers < 1){
             return "You don't have any friends yet :(";
         }
-        StringJoiner output = new StringJoiner(", ", "Friends: ", ":)");
+        StringJoiner output = new StringJoiner(", ", "Friends: ", " :)");
         for (int i = 0; i < sizeFollowers; i++) {
             UserAccount follower = followers[i];
             output.add(follower.getUserName());
@@ -139,5 +140,9 @@ public class UserAccount {
 
     public void setSizeTimeline(int sizeTimeline) {
         this.sizeTimeline = sizeTimeline;
+    }
+
+    public int getSizeFollowers() {
+        return sizeFollowers;
     }
 }

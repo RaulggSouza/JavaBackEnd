@@ -18,7 +18,7 @@ public class Post {
     public String show(){
         StringBuilder output = new StringBuilder();
         output.append(date).append(" ");
-        String quoteText = user+" says \""+quote+"\"";
+        String quoteText = user.getUserName()+" says \""+quote+"\"";
         output.append(quoteText);
         String clapsAndBoos = " | Claps: "+claps+" | Boos: "+boos;
         output.append(clapsAndBoos);
@@ -31,5 +31,37 @@ public class Post {
 
     public void boo(){
         boos++;
+    }
+
+    public String getQuote() {
+        return quote;
+    }
+
+    public void setQuote(String quote) {
+        this.quote = quote;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public int getClaps() {
+        return claps;
+    }
+
+    public int getBoos() {
+        return boos;
+    }
+
+    public UserAccount getUser() {
+        return user;
+    }
+
+    public void setUser(UserAccount user) {
+        this.user = user;
     }
 }

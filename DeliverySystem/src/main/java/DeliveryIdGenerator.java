@@ -1,9 +1,9 @@
 import java.time.LocalTime;
 
-public class DeliveryCompany {
+public class DeliveryIdGenerator {
     private static int id = 10_000;
 
-    private DeliveryCompany(){}
+    private DeliveryIdGenerator(){}
 
     public static String nextId(){
         LocalTime now = LocalTime.now();

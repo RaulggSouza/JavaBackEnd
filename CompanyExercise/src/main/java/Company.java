@@ -46,6 +46,29 @@ public class Company {
                 .ifPresent(e -> e.addPaycheck(LocalDate.now()));
     }
 
+    public void increaseSalary(String idToIncrease, double newSalary){
+        employees.stream()
+                .filter(e -> e.getId().equals(idToIncrease))
+                .findFirst()
+                .ifPresent(e -> e.setSalary(newSalary));
+    }
+
+    public double averageSalary(String jobTitle){
+        return employees.stream()
+                .filter(e -> e.getJobTitle().equals(jobTitle))
+                .mapToDouble(Employee::getSalary)
+                .average()
+                .orElse(0);
+    }
+
+    public double averageSalary(LocalDate start, LocalDate end){
+        return employees.stream()
+                .filter(e -> !(e.getDateOfEmployment().isBefore(start)) && !(e.getDateOfEmployment().isAfter(end)))
+                .mapToDouble(Employee::getSalary)
+                .average()
+                .orElse(0);
+    }
+
     public String getName() {
         return name;
     }

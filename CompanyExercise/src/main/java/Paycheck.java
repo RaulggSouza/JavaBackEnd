@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Paycheck {
     private LocalDate payday;
-    private double salary;
+    private final double salary;
 
     public Paycheck(LocalDate payday, double salary) {
         this.payday = payday;
@@ -21,10 +21,6 @@ public class Paycheck {
 
     public void setPayday(LocalDate payday) {
         this.payday = payday;
-    }
-
-    public void increaseSalary(double newSalary){
-        salary = newSalary;
     }
 
     @Override

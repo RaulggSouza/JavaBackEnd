@@ -1,8 +1,8 @@
 package persistence;
 
 import declaracao.Declaracao;
-import declaracao.DeclaracaoCompleta;
-import declaracao.DeclaracaoSimplificada;
+import exception.DeclarationAlreadyExistsException;
+import gasto.Gasto;
 import inputs.DeclaracaoInput;
 
 import java.util.*;
@@ -13,28 +13,33 @@ public class DeclaracaoRepository {
 
     public void add(){
         Declaracao declaracao = DeclaracaoInput.createDeclaracao();
-        declaracoes.put(declarationCounter++, declaracao);
+        Optional<Declaracao> maybeDeclaracao= declaracoes.values()
+                .stream()
+                .filter(d -> d.equals(declaracao))
+                .findFirst();
+        if (maybeDeclaracao.isEmpty()){
+            declaracoes.put(declarationCounter++, declaracao);
+        } else {
+            throw new DeclarationAlreadyExistsException("Declaração já existe");
+        }
     }
 
     public void update(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Escreva o id da declaração que será alterada: ");
-        long id = scanner.nextLong();
-        if (!declaracoes.containsKey(id)){
-            System.out.println("Não existe nenhuma declaração com esse id");
-            return;
+        long id = DeclaracaoInput.createId();
+        Optional<Long> maybeIndexRemove = declaracoes.keySet()
+                .stream()
+                .filter(key -> key.equals(id))
+                .findFirst();
+        if (maybeIndexRemove.isPresent()) {
+            Declaracao declaracao = DeclaracaoInput.createDeclaracao();
+            declaracoes.replace(id, declaracao);
+        } else {
+            throw new NoSuchElementException("Não existe nenhuma declaração com esse indice");
         }
-        scanner.close();
-        Declaracao declaracao = DeclaracaoInput.createDeclaracao();
-        declaracoes.replace(id, declaracao);
     }
 
     public void remove(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Escreva o id do gasto que será alterado: ");
-        Long id = scanner.nextLong();
-
-        scanner.close();
+        long id = DeclaracaoInput.createId();
         Optional<Long> maybeIndexRemove = declaracoes.keySet()
                 .stream()
                 .filter(key -> key.equals(id))
@@ -44,5 +49,20 @@ public class DeclaracaoRepository {
         } else {
             throw new NoSuchElementException("Não existe nenhuma declaração com esse indice");
         }
+    }
+
+    public void listDeclaracao(long id){
+        Optional<Long> declaracao = declaracoes.keySet().stream()
+                .filter(d -> d.equals(id))
+                .findFirst();
+        if(declaracao.isPresent()){
+            System.out.println(declaracoes.get(declaracao));
+        } else {
+            throw new NoSuchElementException("Não existe nenhum gasto com esse indice");
+        }
+    }
+
+    public void listGastos(){
+        declaracoes.values().forEach(System.out::println);
     }
 }

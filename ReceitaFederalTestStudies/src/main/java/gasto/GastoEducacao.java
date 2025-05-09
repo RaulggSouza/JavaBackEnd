@@ -12,4 +12,9 @@ public final class GastoEducacao extends Gasto{
     public String getNomeInstituicao() {
         return nomeInstituicao;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%s | Nome da Instituição: %s", super.toString(), nomeInstituicao);
+    }
 }

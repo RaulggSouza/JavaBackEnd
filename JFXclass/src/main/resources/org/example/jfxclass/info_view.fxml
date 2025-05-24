@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="81.0" prefWidth="362.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.jfxclass.InfoController">
+   <children>
+      <Label layoutX="27.0" layoutY="30.0" text="Reversed chars: " AnchorPane.leftAnchor="27.0" />
+      <Label fx:id="lbResult" layoutX="137.0" layoutY="30.0" text="--" AnchorPane.leftAnchor="137.0" />
+      <Button layoutX="273.0" layoutY="25.0" mnemonicParsing="false" onAction="#close" text="Fechar" AnchorPane.rightAnchor="25.0" />
+   </children>
+</AnchorPane>

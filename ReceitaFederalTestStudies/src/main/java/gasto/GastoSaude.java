@@ -11,4 +11,9 @@ public final class GastoSaude extends Gasto{
     public String getRegistroConselho() {
         return registroConselho;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%s | Registro de Conselho: %s", super.toString(), registroConselho);
+    }
 }

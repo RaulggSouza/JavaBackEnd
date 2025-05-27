@@ -1,4 +1,4 @@
-package org.example.jfxclass;
+package org.example.jfxexercise;
 
 public class Product {
     final private String id;

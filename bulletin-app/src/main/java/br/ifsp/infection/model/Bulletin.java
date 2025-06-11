@@ -1,7 +1,5 @@
 package br.ifsp.infection.model;
 
-import br.ifsp.infection.persistence.BulletinDTO;
-
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -78,9 +76,5 @@ public class Bulletin{
                 ", icuRatio=" + icuRatio +
                 ", date=" + date +
                 '}';
-    }
-
-    BulletinDTO toDTO(){
-        return new BulletinDTO(id, city, state, infected, deaths, icuRatio, date);
     }
 }

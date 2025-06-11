@@ -1,6 +1,11 @@
 package br.ifsp.infection.persistence;
 
-import br.ifsp.infection.model.Bulletin;
+import java.util.List;
 
-public interface BulletinDAO extends GenericDAO<BulletinDTO, Integer> {
+public interface BulletinDAO <T, K>{
+    void insert(T entity);
+    void delete(K key);
+    void update(T entity);
+    boolean existsById(K key);
+    List<T> findAll();
 }

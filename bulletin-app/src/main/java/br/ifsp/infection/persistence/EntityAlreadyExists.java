@@ -1,4 +1,4 @@
-package br.ifsp.infection.exceptions;
+package br.ifsp.infection.persistence;
 
 public class EntityAlreadyExists extends RuntimeException {
     public EntityAlreadyExists(String message) {
